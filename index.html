@@ -1,0 +1,312 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suiumkan Ulanbek Portfolio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Georgia&display=swap');
+        
+        .title {
+            font-family: 'GT America', monospace; /* Apply typewriter font to main titles */
+            font-size: 2em;
+        }
+        .card {
+            width: 360px;
+            margin: 10px auto;
+            border-radius: 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        .card img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            border-bottom: 1px solid #ddd;
+        }
+        .card-title, .card-description, .card-buttons {
+            margin: 5px; /* Add margin to card elements */
+        }
+        .columns {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 5px; /* Add space underneath each line of 3 cards */
+        }
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            color: #f1f2f7; /* Same color as buttons */
+            margin-top: 5px; /* Reduce space above the tags */
+            padding-left: 5px; /* Add padding to indent the tags */
+            padding-right: 5px; /* Add padding to indent the tags */
+            margin-bottom: 20px;
+        }
+        .tag {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65em; /* Make the tags text smaller */
+            font-style: italic; /* Make the tags text italic */
+        }
+        .card-title {
+            font-size: 1.2em; /* Reduce font size for card titles */
+        }
+        .card-description {
+            font-size: 0.75em; /* Reduce font size for card descriptions */
+            font-family: 'Inter', sans-serif; /* Use Inter font for card descriptions */
+            font-weight: 300; /* Use a lighter version of the font */
+        }
+        .card-buttons {
+            display: flex;
+            justify-content: center; /* Center the buttons */
+        }
+        .card-buttons a {
+            text-decoration: none;
+            padding: 0.25px 0.5px; /* Reduce padding to make buttons smaller */
+            background-color: #f6f6f8; /* Set background color for buttons */
+            color: white !important; /* Ensure text color is white */
+            border-radius: 5px;
+            text-align: center;
+            margin-right: 5px; /* Add small space between buttons */
+        }
+        .card-buttons a:last-child {
+            margin-right: 0; /* Remove margin-right for the last button */
+        }
+        .column {
+            flex: 1;
+            max-width: 32%;
+            box-sizing: border-box;
+        }
+        @media (max-width: 992px) {
+            .column {
+                max-width: 48%; /* 2 columns on medium screens */
+            }
+        }
+        @media (max-width: 768px) {
+            .column {
+                max-width: 100%; /* 1 column on small screens */
+            }
+        }
+        .content-wrapper {
+            padding: 0 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #e4e5ed; /* Same color as buttons "map" and "code" */
+            padding: 10px; /* Original vertical width */
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-family: 'Courier Prime', monospace;
+        }
+
+        .project-info {
+            display: flex;
+            flex-direction: column;
+        }
+        .card-description {
+            margin-bottom: 5px; /* Reduce space below the description */
+        }
+        .hero {
+            padding: 20px;
+            background-color: #f8f8f8; /* Set background to off-white */
+            margin-bottom: 20px;
+        }
+        .project-info {
+            text-align: left; /* Left-align the text */
+            margin: 0 15px; /* Align with the left side of the photo */
+        }
+        .project-info a {
+            display: block;
+            margin-bottom: 10px;
+            color: black; /* Change color to black */
+            text-decoration: none;
+            font-family: Georgia, serif; /* Apply Georgia font to hyperlinked text */
+            font-size: 1.2em; /* Reduce font size for project titles */
+            font-weight: normal; /* Remove bold from project titles */
+        }
+        .project-info a:hover {
+            text-decoration: underline;
+        }
+        .project-info p {
+            font-family: 'Inter', sans-serif; /* Apply modern sans-serif font to description */
+            font-size: 0.75em; /* Reduce font size for project descriptions */
+        }
+        .about-me-text {
+            font-family: Georgia, serif; /* Apply Georgia font to the about me text */
+            font-size: 1.2em;
+        }
+        body {
+            background-color: #f8f8f8; /* Set background to off-white */
+        }
+        .highlight {
+            color: #7586ff; /* Set highlight color */
+        }
+        #about-me .hero {
+            max-width: 800px; /* Set a maximum width for the about me section */
+            margin: 0 auto; /* Center the about me section */
+            margin-top: 10px; 
+        }
+        #about-me {
+            margin-bottom: 60px; /* Add more space below the about me section */
+        }
+        .menu-box {
+            display: flex;
+            align-items: center;
+            background-color: #333; /* Example background color */
+            padding: 10px;
+        }
+        .header {
+            font-family: 'Courier Prime', monospace;
+            font-size: 24px;
+            color: white;
+            text-align: center;
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+    </style>
+</head>
+<body>
+    <main class="content-wrapper">
+        <section id="intro">
+            <div class="hero">
+            </div>
+        </section>
+        <section id="about-me">
+            <div class="hero">
+                <img class="profile-photo" src="photo_2025-02-08 22.54.56.jpeg" alt="Suiumkan's Photo">
+                <h1 class="title">Hi, I'm Suiumkan✨</h1>
+                <p class="about-me-text">I am a data journalist from Kyrgyzstan. Currently pursuing MS in Data Journalism in Columbia Graduate School of Journalism in New York City.</p> 
+
+                <p class="about-me-text"> I cover healthcare, social issues and environmental justice in Russian, Kyrgyz and English. </p> 
+                    
+                <p class="about-me-text">Contact me: ulanbekovas@gmail.com</p>
+
+                <p class="about-me-text">LinkedIn: Suiumkan Ulanbek</p>
+            </div>
+        </section>
+
+        <style>
+            .profile-photo {
+                width: calc(100% / 3); /* Makes the image 3 times smaller */
+                height: auto; /* Maintains aspect ratio */
+                border-radius: 50%; /* Makes it circular */
+                display: block;
+                margin: 0 auto 20px; /* Centers the image */
+            }
+            </style>
+
+<section id="stories">
+    <h2 class="title">Published Works</h2>
+    <div class="columns">
+        <div class="column">
+            <div class="card">
+                <img src="new.max-1520x1008.png" alt="Why child sexual abuse in Kyrgyzstan remains unpunished">
+            </div>
+            <div class="project-info">
+                <a href="https://www.opendemocracy.net/en/odr/why-child-sexual-abuse-kyrgyzstan-remains-unpunished/" target="_blank" class="card-title">Why child sexual abuse in Kyrgyzstan remains unpunished</a>
+            </div>  
+        </div>
+
+        <div class="column">
+            <div class="card">
+                <img src="courier-newsroom-1.jpg" alt="Courier Newsroom Spent Big on a Meta Ad Blitz in October">
+            </div>
+            <div class="project-info">
+                <a href="https://www.cjr.org/tow_center/courier-newsroom-spent-big-on-a-meta-ad-blitz-in-october.php" target="_blank" class="card-title">Courier Newsroom Spent Big on a Meta Ad Blitz in October</a>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card">
+                <img src="CD097CA2-3EE0-4584-AB80-E2CFBED6DBB6.jpg" alt="Project headline">
+            </div>
+            <div class="project-info">
+                <a href="https://rus.azattyk.org/a/30410050.html" target="_blank" class="card-title">НА ВИДУ У ВСЕХ. КАК ЖЕНЩИНЫ В КЫРГЫЗСТАНЕ ПОДВЕРГАЮТСЯ НАСИЛИЮ В СЕМЬЕ И ПОЧЕМУ ВИНОВНЫХ НЕ САЖАЮТ</a>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card">
+                <img src="b13d00b8-a9c8-4b5e-80de-ba650750db70_cx0_cy10_cw0_w1023_r1_s.png" alt="HIV in Kyrgyzstan">
+            </div>
+            <div class="project-info">
+                <a href="https://rus.azattyk.org/a/kyrgyzstan-women-hiv/30086904.html" target="_blank" class="card-title">«Не предохранялась - полностью доверяла». Почему кыргызстанки стали чаще заражаться ВИЧ</a>
+            </div>
+        </div>
+
+        <div class="column">
+          <div class="card">
+              <img src="d6c482b4-6132-466d-9a28-98f481869f9a_w650_r1_s.jpeg" alt="Project headline">
+          </div>
+          <div class="project-info">
+              <a href="https://rus.azattyk.org/a/31331609.html" target="_blank" class="card-title">Деградация земель в Кыргызстане - последствия использования химических удобрений?</a>
+          </div>
+      </div>
+
+        <div class="column">
+            <div class="card">
+                <img src="6b47ceec-b76b-4f78-ae3a-f3bfe886fc28_cx5_cy0_cw89_w650_r1_s.jpg" alt="Education">
+            </div>
+            <div class="project-info">
+                <a href="https://rus.azattyk.org/a/kyrgyzstan-education-child-labour/29937017.html" target="_blank" class="card-title">Больше половины школьников в регионах плохо учатся. При чем тут работа по дому?</a>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card">
+                <img src="a5ead0bb-3537-401f-9cc9-da7e5177636c_cx6_cy0_cw89_w650_r1_s.avif" alt="Microcredits">
+            </div>
+            <div class="project-info">
+                <a href="https://rus.azattyk.org/a/pochemu-mikrokredity-ne-spasayut-ot-bednosti/30303155.html" target="_blank" class="card-title">Почему микрокредиты не спасают от бедности, а просто ее откладывают</a>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card">
+                <img src="69292dfa-ba11-4b54-bef4-f7e1b8367ee2_cx0_cy3_cw0_w650_r1_s.avif" alt="Electricity">
+            </div>
+            <div class="project-info">
+                <a href="https://rus.azattyk.org/a/kygyzstan-electricity-rate/29804097.html" target="_blank" class="card-title">Дешевый свет - самообман. Почему в Кыргызстане нужно повысить цены на электричество</a>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card">
+                <img src="USD_20190824_USD9544-1024x683.jpg" alt="Silk Road Mountain Race">
+            </div>
+            <div class="project-info">
+                <a href="https://novastan.org/de/kirgistan/das-silk-road-mountain-race-ein-fahhradabenteuer-made-in-kyrgyzstan/" target="_blank" class="card-title">Das „Silk Road Mountain Race”, ein Fahrradabenteuer made in Kyrgyzstan</a>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="card">
+                <img src="WhatsApp-Image-2024-10-03-at-17.07.52-800x365.jpeg" alt="Harlem Parents Oppose School Plan">
+            </div>
+            <div class="project-info">
+                <a href="https://theuptowner.org/harlem-parents-oppose-plan-to-turn-ps-76-school-into-a-middle-and-high-school/" target="_blank" class="card-title">
+                Harlem Parents Oppose Plan to Turn PS 76 School Into a Middle and High School</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+    </main>
+</body>
+</html>
