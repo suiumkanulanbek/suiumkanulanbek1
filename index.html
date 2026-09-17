@@ -3,475 +3,562 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suiumkan Ulanbek</title>
-    <link rel="icon" type="image/png" href="suicon1.png"> 
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;600&display=swap" rel="stylesheet">
+    <title>Suiumkan Ulanbek — Data & Investigative Journalist</title>
+    <meta name="description" content="Suiumkan Ulanbek is a data and investigative journalist covering healthcare, criminal justice, and the global economy.">
+    <link rel="icon" type="image/png" href="suicon1.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Spectral:wght@400;500;600;700&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --paper: #ECE9E1;
+            --paper-raised: #F6F4EE;
+            --ink: #1C1B17;
+            --ink-soft: #5A5748;
+            --accent: #A6392B;
+            --folder: #4B5D45;
+            --rule: #CDC7B7;
+        }
+
+        * { box-sizing: border-box; }
+
         body {
-            background-color: #f8f8f8;
-            font-family: 'Libre Franklin', sans-serif;
+            background-color: var(--paper);
+            color: var(--ink);
+            font-family: 'Public Sans', sans-serif;
+            margin: 0;
+            line-height: 1.5;
         }
-        .title {
-            font-family: 'Libre Franklin', sans-serif;
-            font-size: 2em;
+
+        h1, h2, h3, .card-title {
+            font-family: 'Spectral', serif;
+            font-weight: 600;
+            color: var(--ink);
         }
+
+        a { color: inherit; }
+
+        .content-wrapper {
+            padding: 0 24px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* ---------- Nav ---------- */
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            background-color: var(--paper);
+            border-bottom: 1px solid var(--rule);
+            padding: 16px 24px;
+        }
+        .navbar .brand {
+            font-family: 'Spectral', serif;
+            font-weight: 600;
+            font-size: 1.05em;
+        }
+        .navbar nav a {
+            text-decoration: none;
+            font-size: 0.92em;
+            margin-left: 24px;
+            padding-bottom: 3px;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s ease, color 0.15s ease;
+        }
+        .navbar nav a:hover {
+            border-bottom-color: var(--accent);
+            color: var(--accent);
+        }
+
+        /* ---------- Hero ---------- */
+        #about-me .hero {
+            max-width: 760px;
+            margin: 64px auto 56px;
+            display: flex;
+            gap: 32px;
+            align-items: flex-start;
+        }
+        .profile-photo {
+            width: 128px;
+            height: 128px;
+            object-fit: cover;
+            border-radius: 50%;
+            flex-shrink: 0;
+            border: 1px solid var(--rule);
+        }
+        .hero-text h1 {
+            font-size: 2.1em;
+            margin: 0 0 4px;
+            line-height: 1.15;
+        }
+        .hero-role {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.82em;
+            color: var(--folder);
+            margin: 0 0 18px;
+        }
+        .about-me-text {
+            font-size: 1.02em;
+            color: var(--ink-soft);
+            max-width: 62ch;
+            margin: 0 0 12px;
+        }
+
+        .social-row {
+            margin: 0 auto 64px;
+            max-width: 760px;
+            display: flex;
+            gap: 20px;
+        }
+        .icon {
+            width: 22px;
+            height: 22px;
+            opacity: 0.75;
+            transition: opacity 0.15s ease;
+        }
+        .icon:hover { opacity: 1; }
+
+        /* ---------- Section headers ---------- */
+        section { margin-bottom: 64px; }
+        .section-head {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--rule);
+            padding-bottom: 10px;
+            margin-bottom: 28px;
+        }
+        .section-head h2 {
+            font-size: 1.5em;
+            margin: 0;
+        }
+        .section-note {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.78em;
+            color: var(--ink-soft);
+        }
+
+        .columns {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+        @media (max-width: 900px) {
+            .columns { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 620px) {
+            .columns { grid-template-columns: 1fr; }
+            #about-me .hero { flex-direction: column; }
+        }
+
+        .responsibilities { margin-top: 10px; }
+        .responsibilities span {
+            display: inline-block;
+            background-color: var(--paper-raised);
+            border: 1px solid var(--rule);
+            color: var(--ink-soft);
+            padding: 3px 9px;
+            margin: 0 6px 6px 0;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.74em;
+        }
+
+        /* ---------- Published work cards ---------- */
         .card {
-            width: 360px;
-            margin: 10px auto;
-            border-radius: 0;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
+            background-color: var(--paper-raised);
+            border: 1px solid var(--rule);
             display: flex;
             flex-direction: column;
-            background-color: white;
+            overflow: hidden;
         }
         .card img {
             width: 100%;
-            height: 240px;
+            height: 190px;
             object-fit: cover;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid var(--rule);
+            display: block;
         }
-        .card-title, .card-description, .card-buttons {
-            margin: 5px;
+        .project-info { padding: 16px; }
+        .card-outlet {
+            display: block;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.72em;
+            color: var(--accent);
+            margin-bottom: 6px;
         }
-        .columns {
+        .project-info .card-title {
+            display: block;
+            font-size: 1.05em;
+            line-height: 1.3;
+            text-decoration: none;
+            margin-bottom: 4px;
+        }
+        .project-info .card-title:hover { color: var(--accent); }
+        .card-description {
+            font-size: 0.88em;
+            color: var(--ink-soft);
+            margin: 6px 0 0;
+        }
+
+        /* ---------- Investigations (in progress) ---------- */
+        .case-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 18px;
+        }
+        .case-card {
+            background-color: var(--paper-raised);
+            border: 1px solid var(--rule);
+            border-left: 3px solid var(--accent);
+            padding: 22px 24px;
+        }
+        .case-head {
             display: flex;
-            flex-wrap: wrap;
+            align-items: baseline;
             justify-content: space-between;
-            margin-bottom: 5px;
+            gap: 16px;
+            flex-wrap: wrap;
         }
-        .column {
-            flex: 1;
-            max-width: 32%;
-            box-sizing: border-box;
+        .case-head .card-title {
+            font-size: 1.15em;
+            margin: 0;
         }
-        @media (max-width: 992px) {
-            .column {
-                max-width: 48%;
-            }
-        }
-        @media (max-width: 768px) {
-            .column {
-                max-width: 100%;
-            }
-        }
-        .content-wrapper {
-            padding: 0 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .navbar {
+        .status {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.74em;
+            color: var(--accent);
+            white-space: nowrap;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            background-color: #e4e5ed;
-            padding: 10px;
+            gap: 6px;
         }
-        .navbar a {
-            color: black;
-            text-decoration: none;
-            font-family: 'Libre Franklin', sans-serif;
-            font-weight: 600;
-            margin-left: 20px;
-        }
-        .hero {
-            padding: 20px;
-            background-color: #f8f8f8;
-            margin-bottom: 20px;
-        }
-        .project-info {
-            padding: 15px;
-        }
-        .project-info a {
-            display: block;
-            margin-bottom: 10px;
-            color: black;
-            text-decoration: none;
-            font-family: 'Libre Franklin', sans-serif;
-            font-size: 1.1em;
-        }
-        .project-info a:hover {
-            text-decoration: underline;
-        }
-        .project-info p {
-            font-size: 0.85em;
-        }
-        .about-me-text {
-            font-size: 1.1em;
-        }
-        #about-me .hero {
-            max-width: 800px;
-            margin: 0 auto;
-            margin-top: 10px;
-        }
-        #about-me {
-            margin-bottom: 60px;
-        }
-        .profile-photo {
-            width: calc(100% / 3);
-            height: auto;
+        .status::before {
+            content: "";
+            width: 7px;
+            height: 7px;
             border-radius: 50%;
-            display: block;
-            margin: 0 auto 20px;
-        } 
-        .icon {
-            width: 32px;   /* control the size */
-            height: 32px;  /* keep consistent */
-            margin: 0 12px;
-            vertical-align: middle;
-            transition: transform 0.2s ease;
-        }
-        .icon:hover {
-            transform: scale(1.2);  /* subtle zoom on hover */
-        }
-        .responsibilities {
-            margin-top: 8px;
-        }
-
-        .responsibilities span {
+            background-color: var(--accent);
             display: inline-block;
-            background-color: #e4e5ed;  /* light gray pill */
-            color: #333;
-            padding: 3px 8px;
-            border-radius: 12px;
-            margin: 3px 5px 0 0;
-            font-size: 0.8em;
+        }
+        .case-card p {
+            font-size: 0.94em;
+            color: var(--ink-soft);
+            max-width: 72ch;
+            margin: 10px 0 0;
         }
 
+        /* ---------- Course projects (de-emphasized) ---------- */
+        #projects .card { background-color: transparent; }
+        #projects .card-title { font-size: 0.98em; }
+        #projects .card-description { font-size: 0.84em; }
+
+        /* ---------- Footer ---------- */
+        footer {
+            border-top: 1px solid var(--rule);
+            padding: 28px 24px 48px;
+            text-align: center;
+        }
+        footer p {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.78em;
+            color: var(--ink-soft);
+        }
     </style>
 </head>
 <body>
     <header class="navbar">
-        <div>Suiumkan Ulanbek</div>
-        <div>
+        <div class="brand">Suiumkan Ulanbek</div>
+        <nav>
             <a href="#published">Published Works</a>
             <a href="#projects">Course Projects</a>
-            <a href="https://drive.google.com/file/d/1HSZSawgYZO8USRY6o8K3ReVCXqhtbtAc/view" target="_blank">Resume</a>
-        </div>
+            <a href="https://drive.google.com/drive/u/0/folders/1zykX3-lS0CcWuaW36xHgfPw8ZaN_6Pvy" target="_blank">Resume</a>
+        </nav>
     </header>
 
     <main class="content-wrapper">
         <section id="about-me">
             <div class="hero">
-                <img class="profile-photo" src="photo_2025-02-08 22.54.56.jpeg" alt="Suiumkan's Photo">
-                <h1 class="title">Hi, I'm Suiumkan✨</h1>
-
-                <p class="about-me-text">I am a data and investigative journalist. I use data analysis, traditional reporting, and visualization to tell compelling stories.</p>
-
-                <p class="about-me-text">I’ve reported for local and international media including Radio Free Europe, Columbia Journalism Review and Open Democracy. I hold a master’s degree in data journalism from Columbia Journalism School. </p>
-
-                <p class="about-me-text">I focus on reporting that examines complex systems, including healthcare, criminal justice, and the global economy. In addition, I love science and creating maps.</p>
+                <img class="profile-photo" src="photo_2025-02-08 22.54.56.jpeg" alt="Suiumkan's photo">
+                <div class="hero-text">
+                    <h1>Suiumkan Ulanbek</h1>
+                    <p class="hero-role">Data &amp; Investigative Journalist — New York, NY</p>
+                    <p class="about-me-text">I am a data and investigative journalist. I use data analysis, traditional reporting, and visualization to tell compelling stories.</p>
+                    <p class="about-me-text">I've reported for local and international media including Hunterbrook Media, Radio Free Europe, Columbia Journalism Review, and openDemocracy. I hold a master's degree in data journalism from Columbia Journalism School.</p>
+                    <p class="about-me-text">I focus on reporting that examines complex systems, including healthcare, criminal justice, and the global economy. In addition, I love science and creating maps.</p>
+                </div>
+            </div>
+            <div class="social-row">
+                <a href="https://www.linkedin.com/in/suiumkan-ulanbek-381700170/" target="_blank"><img src="linkedin.png" class="icon" alt="LinkedIn"></a>
+                <a href="mailto:su2278@columbia.edu" target="_blank"><img src="email.png" class="icon" alt="Email"></a>
+                <a href="https://github.com/suiumkanulanbek" target="_blank"><img src="github.png" class="icon" alt="GitHub"></a>
             </div>
         </section>
 
-        <!-- Add social media icons -->
-       <div style="margin: auto; width: 655px; max-width: 92%; margin-bottom: 40px; text-align: center;">
-        <a href="https://www.linkedin.com/in/suiumkan-ulanbek-381700170/" target="_blank"><img src="linkedin.png" class="icon" alt="LinkedIn" /></a>
-        <a href="mailto:su2278@columbia.edu" target="_blank"><img src="email.png" class="icon" alt="Email" /></a>
-        <a href="https://github.com/suiumkanulanbek" target="_blank"><img src="github.png" class="icon" alt="GitHub" /></a>
-</div>
-</body>
-
-    <section id="published">
-    <h2 class="title">Published Works</h2>
-    <div class="columns">
-
-    <div class="column">
-            <div class="card">
-                <img src="new.max-1520x1008.png" alt="Why child sexual abuse in Kyrgyzstan remains unpunished">
-                <div class="project-info">
-                    <a href="https://www.opendemocracy.net/en/odr/why-child-sexual-abuse-kyrgyzstan-remains-unpunished/" target="_blank" class="card-title">Why child sexual abuse in Kyrgyzstan remains unpunished</a>
-                    <div class="responsibilities">
-                        <span>Data Analysis</span>
-                        <span>Data Collection</span>
-                        <span>Excel</span>
-                        <span>Data Visualization</span>
-                        <span>Reporting</span>
-                        <span>Writing</span>
-                        <span>Editing</span>
-                    </div>
-                </div>
+        <section id="published">
+            <div class="section-head">
+                <h2>Published Works</h2>
             </div>
-     </div>
+            <div class="columns">
 
-
-            <div class="column">
-            <div class="card">
-                <img src="courier-newsroom-1.jpg" alt="Courier Newsroom Spent Big on a Meta Ad Blitz in October">
-                <div class="project-info">
-                    <a href="https://www.cjr.org/tow_center/courier-newsroom-spent-big-on-a-meta-ad-blitz-in-october.php" target="_blank" class="card-title">Courier Newsroom Spent Big on a Meta Ad Blitz in October</a>
-                    <div class="responsibilities">
-                        <span>Data Analysis</span>
-                        <span>Python</span>
-                        <span>Data Visualization</span>
-                        <span>Reporting</span>
-                        <span>Writing</span>
-                        <span>R</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-                <div class="column">
-                    <div class="card">
-                        <img src="d6c482b4-6132-466d-9a28-98f481869f9a_w650_r1_s.jpeg" alt="Project headline">
-                        <div class="project-info">
-                            <a href="https://rus.azattyk.org/a/31331609.html" target="_blank" class="card-title">Land Degradation in Kyrgyzstan – A Consequence of Chemical Fertilizer Use?</a>
+                <div class="card">
+                    <img src="new.max-1520x1008.png" alt="Why child sexual abuse in Kyrgyzstan remains unpunished">
+                    <div class="project-info">
+                        <span class="card-outlet">openDemocracy</span>
+                        <a href="https://www.opendemocracy.net/en/odr/why-child-sexual-abuse-kyrgyzstan-remains-unpunished/" target="_blank" class="card-title">Why child sexual abuse in Kyrgyzstan remains unpunished</a>
+                        <p class="card-description">Official data shows that fewer and fewer child abusers in Kyrgyzstan are being sent to jail, and most escape punishment altogether.</p>
                         <div class="responsibilities">
-                        <span>Data Analysis</span>
-                        <span>Excel</span>
-                        <span>Data Visualization</span>
-                        <span>Reporting</span>
-                        <span>Writing</span>
-                        <span>Editing</span>
-                        </div> 
+                            <span>Data Analysis</span>
+                            <span>Data Collection</span>
+                            <span>Excel</span>
+                            <span>Data Visualization</span>
+                            <span>Reporting</span>
+                            <span>Writing</span>
+                            <span>Editing</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="column">
-                    <div class="card">
-                        <img src="b13d00b8-a9c8-4b5e-80de-ba650750db70_cx0_cy10_cw0_w1023_r1_s.png" alt="HIV in Kyrgyzstan">
-                        <div class="project-info">
-                            <a href="https://rus.azattyk.org/a/kyrgyzstan-women-hiv/30086904.html" target="_blank" class="card-title">‘I didn’t use protection — I completely trusted him.’ Why Women in Kyrgyzstan Are Getting Infected with HIV More Often</a>
+                <div class="card">
+                    <img src="courier-newsroom-1.jpg" alt="Courier Newsroom Spent Big on a Meta Ad Blitz in October">
+                    <div class="project-info">
+                        <span class="card-outlet">Columbia Journalism Review — Tow Center</span>
+                        <a href="https://www.cjr.org/tow_center/courier-newsroom-spent-big-on-a-meta-ad-blitz-in-october.php" target="_blank" class="card-title">Courier Newsroom Spent Big on a Meta Ad Blitz in October</a>
+                        <p class="card-description">The progressive "newsroom" network spent more than $6 million on Meta ads in October 2024, trailing only the official Trump and Harris campaigns.</p>
                         <div class="responsibilities">
-                        <span>Data Analysis</span>
-                        <span>Excel</span>
-                        <span>Data Visualization</span>
-                        <span>Reporting</span>
-                        <span>Writing</span>
-                        <span>Editing</span>
-                        </div>
+                            <span>Data Analysis</span>
+                            <span>Python</span>
+                            <span>Data Visualization</span>
+                            <span>Reporting</span>
+                            <span>Writing</span>
+                            <span>R</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="column">
-                    <div class="card">
-                        <img src="6b47ceec-b76b-4f78-ae3a-f3bfe886fc28_cx5_cy0_cw89_w650_r1_s.jpg" alt="Education">
-                        <div class="project-info">
-                            <a href="https://rus.azattyk.org/a/kyrgyzstan-education-child-labour/29937017.html" target="_blank" class="card-title">More Than Half of Students in the Regions Are Struggling in School. What Does Housework Have to Do with It?</a>
+                <div class="card">
+                    <img src="d6c482b4-6132-466d-9a28-98f481869f9a_w650_r1_s.jpeg" alt="Land Degradation in Kyrgyzstan">
+                    <div class="project-info">
+                        <span class="card-outlet">Azattyk (RFE/RL)</span>
+                        <a href="https://rus.azattyk.org/a/31331609.html" target="_blank" class="card-title">Land Degradation in Kyrgyzstan – A Consequence of Chemical Fertilizer Use?</a>
+                        <p class="card-description">Kyrgyzstan's farmers are overusing chemical fertilizers, degrading roughly a third of the country's agricultural land and costing an estimated $601 million a year, or 16% of GDP.</p>
                         <div class="responsibilities">
-                        <span>Data Analysis</span>
-                        <span>Excel</span>
-                        <span>Data Visualization</span>
-                        <span>Reporting</span>
-                        <span>Writing</span>
-                        <span>Editing</span>
-                    </div>
+                            <span>Data Analysis</span>
+                            <span>Excel</span>
+                            <span>Data Visualization</span>
+                            <span>Reporting</span>
+                            <span>Writing</span>
+                            <span>Editing</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="column">
-                    <div class="card">
-                        <img src="a5ead0bb-3537-401f-9cc9-da7e5177636c_cx6_cy0_cw89_w650_r1_s.avif" alt="Microcredits">
-                        <div class="project-info">
-                            <a href="https://rus.azattyk.org/a/pochemu-mikrokredity-ne-spasayut-ot-bednosti/30303155.html" target="_blank" class="card-title">Why Microloans Don’t Alleviate Poverty — They Just Postpone It</a>
-                            <div class="responsibilities">
-                        <span>Data Analysis</span>
-                        <span>Excel</span>
-                        <span>Data Visualization</span>
-                        <span>Reporting</span>
-                        <span>Writing</span>
-                        <span>Editing</span>
-                    </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="column">
-                    <div class="card">
-                        <img src="69292dfa-ba11-4b54-bef4-f7e1b8367ee2_cx0_cy3_cw0_w650_r1_s.avif" alt="Electricity">
-                        <div class="project-info">
-                            <a href="https://rus.azattyk.org/a/kygyzstan-electricity-rate/29804097.html" target="_blank" class="card-title">Cheap electricity is self-deception: Why Kyrgyzstan needs to raise electricity prices</a>
+                <div class="card">
+                    <img src="https://kloop.kg/wp-content/uploads/2020/02/IMG_4687.jpg" alt="На виду у всех — domestic violence in Kyrgyzstan">
+                    <div class="project-info">
+                        <span class="card-outlet">Kloop</span>
+                        <a href="https://kloop.kg/t/na-vidu-u-vseh/" target="_blank" class="card-title">На виду у всех</a>
+                        <p class="card-description">How women in Kyrgyzstan experience domestic violence, and why it's so difficult to secure real punishment for abusers — most cases fall under administrative liability, where the offender can get off with a fine or community service, and impunity lets the abuse continue.</p>
                         <div class="responsibilities">
-                        <span>Data Analysis</span>
-                        <span>Excel</span>
-                        <span>Data Visualization</span>
-                        <span>Reporting</span>
-                        <span>Writing</span>
-                        <span>Editing</span>
-                    </div>
+                            <span>Data Analysis</span>
+                            <span>Reporting</span>
+                            <span>Writing</span>
+                            <span>Editing</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="column">
-                    <div class="card">
-                        <img src="USD_20190824_USD9544-1024x683.jpg" alt="Silk Road Mountain Race">
-                        <div class="project-info">
-                            <a href="https://novastan.org/de/kirgistan/das-silk-road-mountain-race-ein-fahhradabenteuer-made-in-kyrgyzstan/" target="_blank" class="card-title">Das „Silk Road Mountain Race", ein Fahrradabenteuer made in Kyrgyzstan</a>
+                <div class="card">
+                    <img src="b13d00b8-a9c8-4b5e-80de-ba650750db70_cx0_cy10_cw0_w1023_r1_s.png" alt="HIV in Kyrgyzstan">
+                    <div class="project-info">
+                        <span class="card-outlet">Azattyk (RFE/RL)</span>
+                        <a href="https://rus.azattyk.org/a/kyrgyzstan-women-hiv/30086904.html" target="_blank" class="card-title">'I didn't use protection — I completely trusted him.' Why women in Kyrgyzstan are getting infected with HIV more often</a>
+                        <p class="card-description">New HIV infections among women in Kyrgyzstan have risen 72% over the past decade, driven largely by unprotected sex with partners who conceal their status.</p>
                         <div class="responsibilities">
-                        <span>Reporting</span>
-                        <span>Writing</span>
-                        <span>Editing</span>
-                        </div>
+                            <span>Data Analysis</span>
+                            <span>Excel</span>
+                            <span>Data Visualization</span>
+                            <span>Reporting</span>
+                            <span>Writing</span>
+                            <span>Editing</span>
                         </div>
                     </div>
                 </div>
 
-                <div class="column">
-                    <div class="card">
-                        <img src="WhatsApp-Image-2024-10-03-at-17.07.52-800x365.jpeg" alt="Harlem Parents Oppose School Plan">
-                        <div class="project-info">
-                            <a href="https://theuptowner.org/harlem-parents-oppose-plan-to-turn-ps-76-school-into-a-middle-and-high-school/" target="_blank" class="card-title">Harlem Parents Oppose Plan to Turn PS 76 School Into a Middle and High School</a>
-                            <div class="responsibilities">
-                        <span>Data Analysis</span>
-                        <span>Reporting</span>
-                        <span>Writing</span>
-                        <span>Editing</span>
-                    </div>
+                <div class="card">
+                    <img src="6b47ceec-b76b-4f78-ae3a-f3bfe886fc28_cx5_cy0_cw89_w650_r1_s.jpg" alt="Education and child labor in Kyrgyzstan">
+                    <div class="project-info">
+                        <span class="card-outlet">Azattyk (RFE/RL)</span>
+                        <a href="https://rus.azattyk.org/a/kyrgyzstan-education-child-labour/29937017.html" target="_blank" class="card-title">More than half of students in the regions are struggling in school. What does housework have to do with it?</a>
+                        <p class="card-description">In some regions of Kyrgyzstan, up to 75% of eighth-graders test below basic proficiency, and girls in poor rural households take on far more unpaid domestic work than boys, cutting into study time.</p>
+                        <div class="responsibilities">
+                            <span>Data Analysis</span>
+                            <span>Excel</span>
+                            <span>Data Visualization</span>
+                            <span>Reporting</span>
+                            <span>Writing</span>
+                            <span>Editing</span>
                         </div>
                     </div>
                 </div>
+
+                <div class="card">
+                    <img src="a5ead0bb-3537-401f-9cc9-da7e5177636c_cx6_cy0_cw89_w650_r1_s.avif" alt="Microcredit in Kyrgyzstan">
+                    <div class="project-info">
+                        <span class="card-outlet">Azattyk (RFE/RL)</span>
+                        <a href="https://rus.azattyk.org/a/pochemu-mikrokredity-ne-spasayut-ot-bednosti/30303155.html" target="_blank" class="card-title">Why microloans don't alleviate poverty — they just postpone it</a>
+                        <p class="card-description">Kyrgyzstan's microcredit sector was created to fight poverty, but with interest rates up to 40% and repayments eating a quarter of average income, borrowers often trade today's poverty for tomorrow's.</p>
+                        <div class="responsibilities">
+                            <span>Data Analysis</span>
+                            <span>Excel</span>
+                            <span>Data Visualization</span>
+                            <span>Reporting</span>
+                            <span>Writing</span>
+                            <span>Editing</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="69292dfa-ba11-4b54-bef4-f7e1b8367ee2_cx0_cy3_cw0_w650_r1_s.avif" alt="Electricity pricing in Kyrgyzstan">
+                    <div class="project-info">
+                        <span class="card-outlet">Azattyk (RFE/RL)</span>
+                        <a href="https://rus.azattyk.org/a/kygyzstan-electricity-rate/29804097.html" target="_blank" class="card-title">Cheap electricity is self-deception: Why Kyrgyzstan needs to raise electricity prices</a>
+                        <p class="card-description">Kyrgyzstan's electricity tariffs don't cover production costs, leaving the national energy sector more than 100 billion som in debt and its aging grid at risk of failure.</p>
+                        <div class="responsibilities">
+                            <span>Data Analysis</span>
+                            <span>Excel</span>
+                            <span>Data Visualization</span>
+                            <span>Reporting</span>
+                            <span>Writing</span>
+                            <span>Editing</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="USD_20190824_USD9544-1024x683.jpg" alt="Silk Road Mountain Race">
+                    <div class="project-info">
+                        <span class="card-outlet">Novastan</span>
+                        <a href="https://novastan.org/de/kirgistan/das-silk-road-mountain-race-ein-fahhradabenteuer-made-in-kyrgyzstan/" target="_blank" class="card-title">Das „Silk Road Mountain Race", ein Fahrradabenteuer made in Kyrgyzstan</a>
+                        <p class="card-description">Kyrgyzstan's Silk Road Mountain Race, held since 2018, is considered one of the toughest bikepacking races in the world — 1,700 kilometers and 31,000 meters of elevation gain.</p>
+                        <div class="responsibilities">
+                            <span>Reporting</span>
+                            <span>Writing</span>
+                            <span>Editing</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="WhatsApp-Image-2024-10-03-at-17.07.52-800x365.jpeg" alt="Harlem parents oppose school plan">
+                    <div class="project-info">
+                        <span class="card-outlet">The Uptowner</span>
+                        <a href="https://theuptowner.org/harlem-parents-oppose-plan-to-turn-ps-76-school-into-a-middle-and-high-school/" target="_blank" class="card-title">Harlem parents oppose plan to turn PS 76 school into a middle and high school</a>
+                        <p class="card-description">Harlem parents pushed back against a Department of Education proposal to convert PS 76 into a middle and high school, arguing the plan overlooked their community's concerns.</p>
+                        <div class="responsibilities">
+                            <span>Data Analysis</span>
+                            <span>Reporting</span>
+                            <span>Writing</span>
+                            <span>Editing</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
         <section id="projects">
-            <h2 class="title">Course Projects</h2>
+            <div class="section-head">
+                <h2>Course Projects</h2>
+                <span class="section-note">Columbia Journalism School</span>
+            </div>
             <div class="columns">
 
-        <div class="column">
-            <div class="card">
-                <img src="family.png" alt="maternal_mortality">
-            </div>
-            <div class="project-info">
-                <a href="https://suiumkanulanbek.github.io/MaternalMortality_MastersProject/" target="_blank" class="card-title">Silent Crisis, Unrescued Mothers</a>
-                <p class="card-description">Columbia Journalism School Master’s project on maternal mortality in the United States, with a focus on mental health–related deaths.</p>
-                <div class="responsibilities">
-                        <span>Data Analysis</span>
-                        <span>Python</span>
-                        <span>Data Scraping</span>
-                        <span>R</span>
-                        <span>QGIS</span>
-                        <span>Illustrator</span>
-                        <span>Data Visualization</span>
-                        <span>Reporting</span>
-                        <span>Editing</span>
-                    </div>
-            </div>  
-        </div>
-
-        <div class="column">
-            <div class="card">
-                <img src="tennis.jpg" alt="allergy">
-            </div>
-            <div class="project-info">
-                <a href="https://medium.com/@hazelgandhi98/what-historical-data-tells-us-about-who-will-win-the-french-open-353370888a9b" target="_blank" class="card-title">What Historical Data Tells us About Who Will Win the French Open</a>
-                <p class="card-description">Course project focused on building a predictive model to forecast the men’s singles champion of the 2024 French Open.</p>
-                <div class="responsibilities">
-                        <span>Reporting</span>
-                        <span>Writing</span>
-                        <span>Data Visualization</span>
-                        <span>Data Analysis</span>
-                        <span>Python</span>
-                        <span>Editing</span>
+                <div class="card">
+                    <img src="family.png" alt="Maternal mortality">
+                    <div class="project-info">
+                        <a href="https://suiumkanulanbek.github.io/MaternalMortality_MastersProject/" target="_blank" class="card-title">Silent Crisis, Unrescued Mothers</a>
+                        <p class="card-description">Columbia Journalism School master's project on maternal mortality in the United States, with a focus on mental health–related deaths.</p>
+                        <div class="responsibilities">
+                            <span>Data Analysis</span>
+                            <span>Python</span>
+                            <span>Data Scraping</span>
+                            <span>R</span>
+                            <span>QGIS</span>
+                            <span>Illustrator</span>
+                            <span>Data Visualization</span>
+                            <span>Reporting</span>
+                            <span>Editing</span>
                         </div>
-            </div>  
-        </div>
-
-        <div class="column">
-            <div class="card">
-                <img src="maternal.jpg" alt="maternal mortality">
-            </div>
-            <div class="project-info">
-                <a href="https://suiumkanulanbek.github.io/data_studio3_maternal_mortality_project/" target="_blank" class="card-title">Maternal Deaths in the U.S. Remain High, While Most Are Preventable</a>
-                <p class="card-description">Course project on Maternal Mortality in the US</p>
-                <div class="responsibilities">
-                        <span>Data Analysis</span>
-                        <span>Data Visualization</span>
-                        <span>Python</span>
-                        <span>Writing</span>
-                        <span>Data Analysis</span>
                     </div>
-            </div>  
-        </div>
+                </div>
 
-
-        <div class="column">
-            <div class="card">
-                <img src="rare.png" alt="rare diseases table">
-            </div>
-            <div class="project-info">
-                <a href="https://suiumkanulanbek.github.io/project1/" target="_blank" class="card-title">Rare Disease Treatment Is Costly. Delayed Diagnosis Makes It Even Worse</a>
-                <p class="card-description">Course project on Costs Spent due to Diagnosis Delays for Patients with Rare Diseases</p>
-                <div class="responsibilities">
-                        <span>Data Analysis</span>
-                        <span>Data Visualization</span>
-                        <span>Python</span>
-                        <span>Editing</span>
-                    </div>
-            </div>  
-        </div>
-
-        
-         <div class="column">
-            <div class="card">
-                <img src="opioid1.png" alt="opioid crisis">
-            </div>
-            <div class="project-info">
-                <a href="https://suiumkanulanbek.github.io/project4/" target="_blank" class="card-title">America's Opioid Crisis</a>
-                <p class="card-description">Course project on Opioid Crisis in the US</p>
-                <div class="responsibilities">
-                        <span>Data Analysis</span>
-                        <span>Python</span>
-                        <span>Writing</span>
-                        <span>Data Visualization</span>
-                    </div>
-            </div>  
-        </div>
-
-        <div class="column">
-            <div class="card">
-                <img src="dating.png" alt="dating in nyc">
-            </div>
-            <div class="project-info">
-                <a href="https://suiumkanulanbek.github.io/project_dating/" target="_blank" class="card-title">Think Online Dating Will Help You Find Love in NYC? Think Again</a>
-                <p class="card-description">Course project on dating in NYC</p>
-                <div class="responsibilities">
-                        <span>Data Analysis</span>
-                        <span>Python</span>
-                        <span>Data Scraping</span>
-                        <span>Writing</span>
-                        <span>Data Visualization</span>
-                    </div>
-            </div>  
-        </div>
-        
-        <div class="column">
-            <div class="card">
-                <img src="allergy.png" alt="allergy">
-            </div>
-            <div class="project-info">
-                <a href="https://suiumkanulanbek.github.io/water_allergy_profile/" target="_blank" class="card-title">When Rain Hurts and Showers Burn</a>
-                <p class="card-description">Patient profile writing for Investigating Healthcare class</p>
-                <div class="responsibilities">
-                        <span>Reporting</span>
-                        <span>Writing</span>
-                        <span>Editing</span>
+                <div class="card">
+                    <img src="tennis.jpg" alt="French Open predictive model">
+                    <div class="project-info">
+                        <a href="https://medium.com/@hazelgandhi98/what-historical-data-tells-us-about-who-will-win-the-french-open-353370888a9b" target="_blank" class="card-title">What Historical Data Tells Us About Who Will Win the French Open</a>
+                        <p class="card-description">Course project focused on building a predictive model to forecast the men's singles champion of the 2024 French Open.</p>
+                        <div class="responsibilities">
+                            <span>Reporting</span>
+                            <span>Writing</span>
+                            <span>Data Visualization</span>
+                            <span>Data Analysis</span>
+                            <span>Python</span>
+                            <span>Editing</span>
                         </div>
-            </div>  
-        </div>
-        
-        <div class="column">
-            <div class="card">
-                <img src="taser.jpg" alt="taser">
-            </div>
-            <div class="project-info">
-                <a href="https://suiumkanulanbek.github.io/hospital_taser_use/" target="_blank" class="card-title">Rising Use of Tasers in U.S. Hospitals Raises Concerns</a>
-                <p class="card-description">Course Project for Investigating Healthcare class on Usage of Restraint Weapons in Hospitals</p>
-                <div class="responsibilities">
-                        <span>Reporting</span>
-                        <span>Writing</span>
-                        <span>Editing</span>
-                        </div>
-            </div>  
-        </div>
+                    </div>
+                </div>
 
+                <div class="card">
+                    <img src="maternal.jpg" alt="Maternal mortality data">
+                    <div class="project-info">
+                        <a href="https://suiumkanulanbek.github.io/data_studio3_maternal_mortality_project/" target="_blank" class="card-title">Maternal Deaths in the U.S. Remain High, While Most Are Preventable</a>
+                        <p class="card-description">Course project on maternal mortality in the U.S.</p>
+                        <div class="responsibilities">
+                            <span>Data Analysis</span>
+                            <span>Data Visualization</span>
+                            <span>Python</span>
+                            <span>Writing</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="allergy.png" alt="Water allergy patient profile">
+                    <div class="project-info">
+                        <a href="https://suiumkanulanbek.github.io/water_allergy_profile/" target="_blank" class="card-title">When Rain Hurts and Showers Burn</a>
+                        <p class="card-description">Patient profile writing for Investigating Healthcare class.</p>
+                        <div class="responsibilities">
+                            <span>Reporting</span>
+                            <span>Writing</span>
+                            <span>Editing</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <img src="taser.jpg" alt="Taser use in hospitals">
+                    <div class="project-info">
+                        <a href="https://suiumkanulanbek.github.io/hospital_taser_use/" target="_blank" class="card-title">Rising Use of Tasers in U.S. Hospitals Raises Concerns</a>
+                        <p class="card-description">Course project for Investigating Healthcare class on the use of restraint weapons in hospitals.</p>
+                        <div class="responsibilities">
+                            <span>Reporting</span>
+                            <span>Writing</span>
+                            <span>Editing</span>
+                        </div>
+                    </div>
+                </div>
 
             </div>
         </section>
     </main>
+
+    <footer>
+        <p>su2278@columbia.edu — New York, NY</p>
+    </footer>
 </body>
 </html>
